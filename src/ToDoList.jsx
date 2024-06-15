@@ -2,11 +2,13 @@ import { useState } from "react";
 
 function TodoList() {
   const [tasks, setTasks] = useState([]);
-  const [NewTasks, setNewTask] = useState("");
+  const [newTasks, setNewTask] = useState("");
 
-  function handleTodoInputChange(e) {}
+  function handleTodoInputChange(e) {
+    setNewTask(e.target.value);
+  }
 
-  function addTodo() {}
+  function addNewTodo() {}
 
   function deleteTodo(index) {}
 
@@ -16,7 +18,17 @@ function TodoList() {
 
   return (
     <>
-      <div className="todos"></div>
+      <div className="todos">
+        <input
+          type="text"
+          value={newTasks}
+          onChange={handleTodoInputChange}
+          placeholder="Add a new task..."
+        />
+        <button className="add_new_task" onClick={addNewTodo}>
+          Add Task
+        </button>
+      </div>
     </>
   );
 }
