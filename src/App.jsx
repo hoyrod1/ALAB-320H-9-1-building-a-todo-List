@@ -8,7 +8,6 @@ function App() {
   const style = {
     backgroundColor: "lightgrey",
     width: "800px",
-    height: "80vh",
     margin: "20px auto",
     border: "2px solid brown",
   };

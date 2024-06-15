@@ -1,0 +1,26 @@
+.todos {
+  width: 90%;
+  margin: auto;
+}
+
+.add_new_task {
+  display: inline-block;
+  width: 100%;
+  margin: auto;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 12px 10px;
+  margin: 5px auto;
+  box-sizing: border-box;
+}
+
+.todos-list {
+  width: 100%;
+  margin: auto;
+}
+
+li label {
+  margin-left: 15px;
+  color: brown;
+}
