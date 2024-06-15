@@ -10,7 +10,12 @@ function TodoList() {
     setNewTask(e.target.value);
   }
 
-  function addNewTodo() {}
+  function addNewTodo() {
+    // console.log("Add new todo");
+    // console.log(newTasks);
+    setTasks((tasks) => [...tasks, { title: newTasks }]);
+    setNewTask("");
+  }
 
   function deleteTodo(index) {}
 
