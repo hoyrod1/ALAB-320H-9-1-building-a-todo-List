@@ -13,11 +13,18 @@ function TodoList() {
   function addNewTodo() {
     // console.log("Add new todo");
     // console.log(newTasks);
-    setTasks((tasks) => [...tasks, { title: newTasks }]);
-    setNewTask("");
+    if (newTasks.trim() !== "") {
+      setTasks((tasks) => [...tasks, { title: newTasks }]);
+      setNewTask("");
+    } else {
+      setNewTask("");
+    }
   }
 
-  function deleteTodo(index) {}
+  function deleteTodo(index) {
+    const todoDeletedList = tasks.filter((todoElement, i) => i !== index);
+    setTasks(todoDeletedList);
+  }
 
   function moveTodosUp(index) {}
 
