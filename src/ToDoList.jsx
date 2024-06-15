@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { InitialState } from "./data/InitialState.jsx";
 
 function TodoList() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(InitialState);
   const [newTasks, setNewTask] = useState("");
 
   function handleTodoInputChange(e) {
