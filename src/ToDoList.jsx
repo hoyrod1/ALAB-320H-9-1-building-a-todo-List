@@ -14,7 +14,7 @@ function TodoList() {
     // console.log("Add new todo");
     // console.log(newTasks);
     if (newTasks.trim() !== "") {
-      setTasks((tasks) => [...tasks, { title: newTasks }]);
+      setTasks((tasks) => [{ title: newTasks }, ...tasks]);
       setNewTask("");
     } else {
       setNewTask("");
@@ -26,9 +26,27 @@ function TodoList() {
     setTasks(todoDeletedList);
   }
 
-  function moveTodosUp(index) {}
+  function editTodo(index) {
+    console.log(index);
+  }
 
-  function moveTodosDown(index) {}
+  function handleTodoUpdateChange(index) {
+    console.log(index);
+    console.log(tasks);
+  }
+
+  function completedTodo(todo) {
+    // console.log(todo);
+    const todoDeletedList = tasks.map((task, i) => {
+      if (task.id == todo.id) {
+        return { ...task, completed: true };
+      } else {
+        return task;
+      }
+    });
+    // console.log(todoDeletedList);
+    setTasks(todoDeletedList);
+  }
 
   // console.log(tasks);
   return (
@@ -50,25 +68,57 @@ function TodoList() {
           {tasks.map((todo, todoIndex) => {
             return (
               <li key={todoIndex}>
-                <span>{todo.title}</span>
-                <label htmlFor="delete">Delete</label>
+                <span
+                  style={
+                    todo.completed
+                      ? {
+                          textDecoration: "line-through",
+                          cursor: "not-allowed",
+                        }
+                      : {}
+                  }
+                >
+                  {todo.title}
+                </span>
+                <label htmlFor="completed">Completed</label>
                 <input
+                  id="completed"
+                  type="checkbox"
+                  onClick={() => completedTodo(todo)}
+                />
+                <button
+                  className="edit"
+                  id="edit"
+                  onClick={() => editTodo(todoIndex)}
+                >
+                  Edit
+                </button>
+                <button
                   id="delete"
-                  type="checkbox"
+                  className="delete"
                   onClick={() => deleteTodo(todoIndex)}
-                />
-                <label htmlFor="Move Up">Move Up</label>
-                <input
-                  id="Move Up"
-                  type="checkbox"
-                  onClick={() => deleteTodo(todoIndex)}
-                />
-                <label htmlFor="Move Down">Move Down</label>
-                <input type="checkbox" onClick={() => deleteTodo(todoIndex)} />
+                >
+                  Delete
+                </button>
               </li>
             );
           })}
         </ol>
+        <div className="todos">
+          <input
+            type="text"
+            value={newTasks}
+            onChange={handleTodoUpdateChange}
+            // placeholder="Add a new task..."
+          />
+          <br />
+          <button
+            className="add_new_task"
+            onClick={() => handleTodoUpdateChange(todoIndex)}
+          >
+            Update Task
+          </button>
+        </div>
       </div>
     </>
   );
